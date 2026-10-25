@@ -1,0 +1,191 @@
+:root {
+    --bg-gradient: linear-gradient(135deg, #f093fb 0%, #f5576c 30%, #ffeed0 70%, #4facfe 100%);
+    --sunset-orange: #ff7e5f;
+    --sunset-dark: #feb47b;
+    --teal-main: #2ec4b6;
+    --teal-dark: #0f968c;
+    --card-bg: rgba(255, 255, 255, 0.88);
+    --text-color: #2b3a42;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    background: linear-gradient(135deg, #ff7e5f 0%, #feb47b 40%, #86e3ce 100%);
+    background-attachment: fixed;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    overflow-x: hidden;
+    color: var(--text-color);
+    padding: 20px;
+    position: relative;
+}
+
+/* Floating Elements Background */
+.heart-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    font-size: 24px;
+    animation: floatUp 6s linear infinite;
+    opacity: 0.6;
+    bottom: -50px;
+}
+
+@keyframes floatUp {
+    0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+    100% { transform: translateY(-105vh) rotate(360deg); opacity: 0; }
+}
+
+/* Main Content Card */
+.container {
+    background: var(--card-bg);
+    backdrop-filter: blur(12px);
+    border-radius: 30px;
+    padding: 40px;
+    width: 100%;
+    max-width: 600px;
+    text-align: center;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+    z-index: 10;
+    border: 2px solid rgba(255, 255, 255, 0.6);
+}
+
+h1 {
+    color: var(--sunset-orange);
+    font-size: 2.6rem;
+    margin-bottom: 8px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.05);
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    font-style: italic;
+    margin-bottom: 25px;
+    color: var(--teal-dark);
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+/* Pulsing Center Icon */
+.heart-icon {
+    font-size: 85px;
+    display: inline-block;
+    animation: pulse 1.6s infinite ease-in-out;
+    margin: 15px 0;
+    cursor: pointer;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.12); }
+    100% { transform: scale(1); }
+}
+
+/* Text Container Box */
+.message-box {
+    min-height: 90px;
+    margin: 20px 0;
+    padding: 20px;
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    font-weight: 500;
+    line-height: 1.5;
+    border: 2px dashed var(--sunset-dark);
+    transition: opacity 0.2s ease-in-out;
+}
+
+/* Story/Memory Buttons */
+.btn-group {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    margin-bottom: 30px;
+    flex-wrap: wrap;
+}
+
+button {
+    background: linear-gradient(45deg, var(--sunset-orange), var(--sunset-dark));
+    color: white;
+    border: none;
+    padding: 12px 22px;
+    font-size: 0.95rem;
+    font-weight: bold;
+    border-radius: 50px;
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(255, 126, 95, 0.3);
+    transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(255, 126, 95, 0.4);
+}
+
+/* Love Meter UI elements */
+.game-section {
+    border-top: 2px dashed rgba(46, 196, 182, 0.3);
+    padding-top: 25px;
+    margin-top: 20px;
+}
+
+.game-title {
+    font-size: 1.15rem;
+    color: var(--teal-dark);
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.meter-container {
+    width: 100%;
+    background: #e0f2f1;
+    border-radius: 25px;
+    height: 25px;
+    margin: 15px 0;
+    overflow: hidden;
+    box-shadow: inset 0 2px 4px rgba(0,0,0,0.08);
+}
+
+.meter-bar {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, var(--teal-main), var(--sunset-orange));
+    transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border-radius: 25px;
+}
+
+.counter-text {
+    font-weight: bold;
+    font-size: 1.2rem;
+    color: var(--sunset-orange);
+}
+
+.boost-btn {
+    background: linear-gradient(45deg, var(--teal-main), var(--teal-dark));
+    box-shadow: 0 4px 12px rgba(46, 196, 182, 0.3);
+}
+
+.boost-btn:hover {
+    box-shadow: 0 6px 18px rgba(46, 196, 182, 0.4);
+}

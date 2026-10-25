@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy 1 yeeaaarrr!</title>
+    <!-- css file below -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Background for floating elements -->
+    <div class="heart-bg" id="heartBg"></div>
+
+    <!-- main interactive card -->
+    <div class="container">
+        <h1>happy one year my lovely Koncz Adam <3</h1>
+        <p class="subtitle">365 days of loving your sweet heart passed already n I couldn't be happier :D</p>
+
+        <!-- Clickable center pulse -->
+        <div class="heart-icon" id="mainHeart" onclick="triggerBurst()">🧡</div>
+
+        <!-- The box where custom notes will load dynamically -->
+        <div class="message-box" id="msgBox">
+            Click the buttons below to see SOME of my favorite things about us !!
+        </div>
+
+        <!-- interactive message selector buttons -->
+        <div class="btn-group">
+            <button onclick="changeMessage(0)">our first meet</button>
+            <button onclick="changeMessage(1)">why i love yeww</button>
+            <button onclick="changeMessage(2)">future plans with ye</button>
+        </div>
+
+        <!-- Interactive Love Meter Mini-Game -->
+        <div class="game-section">
+            <p class="game-title">how much do I love you?? click to power up the meter (although u already know the answer)</p>
+            <div class="meter-container">
+                <div class="meter-bar" id="loveMeter"></div>
+            </div>
+            <p class="counter-text"><span id="percentage">0</span>%</p>
+            <button onclick="boostLove()" class="boost-btn">click here to fill my heart you oh so dearly protect ! :D</button>
+        </div>
+    </div>
+
+    <!-- --- Java for funsies heh --- -->
+    <script>
+        // Array of dynamic text blocks
+        const loveMessages = [
+            "Remember our very first meet?? ofc u do, I was so nervous in the car bruh but the moment you came out to the car, i slammed my hand on the window liek there's no tomorrow.... I knew right then you were destined to be my husbun. hell lad you even gave me a back massage n that was heaven too. lets not forget about the way you looked at me though with those deep brown earthy eyes of yours. so dreamy you are :(",
+            "I love you cus you make me laugh even on my worst days, you support my wildest dreams (wink heh), and you held my hand back there like you never wanted to let go. I truly cherish every single moment spent with you, my one and only. You make my days brighter by every laugh, every smile with cams, and every call we have. You're truly one in 8 billion, my loving definition of perfection. Thanks you for reassuring me on my sad overthiking days and my period days. I adore thy so mauuchchhh !! (ask me to write more, i swear i could go on for days yapping about how much I love you and for why I love you. same with that 100 reasons why I love you note I made for you that night when you were on your mac!!)",
+            "First year down, a lifetime to go bunny. I can't wait for more road trips whilst holding hands in the backseat, late night talks, more inside jokes, and building our future together side by side, seeing that wonderful face and smile of yours growing with each passing day <3 hopefully we'll meet more than one time in one year in the future. I miss your touch with each passing day, and your kisses. ESP your kisses. so soft and warm...... i loved getting kissed by you even though I seemed nervous as frick ANYWAYSSS lets have kids in the future and have an ever-so-loving household pls ... thanks you :)"
+        ];
+
+        const msgBox = document.getElementById('msgBox');
+        const loveMeter = document.getElementById('loveMeter');
+        const percentText = document.getElementById('percentage');
+        const heartBg = document.getElementById('heartBg');
+        let currentLove = 0;
+
+        function changeMessage(index) {
+            msgBox.style.opacity = 0;
+            setTimeout(() => {
+                msgBox.innerHTML = loveMessages[index];
+                msgBox.style.opacity = 1;
+            }, 200);
+            triggerBurst();
+        }
+
+        function boostLove() {
+            if (currentLove < 100) {
+                currentLove += 10;
+                loveMeter.style.width = currentLove + '%';
+                percentText.innerText = currentLove;
+            } else if (currentLove >= 100 && currentLove < 999) {
+                currentLove += 150;
+                percentText.innerText = currentLove + " (infinity & beyond (ref.....))";
+                msgBox.innerHTML = "✨ ERROR: you broke rhe chart. this is how you know my love for you could worry a poet...";
+                triggerBurst();
+            }
+            createEmojiShower('🧡');
+        }
+
+        function spawnHeart() {
+            const heart = document.createElement('div');
+            heart.classList.add('floating-heart');
+            
+            const emojis = ['🧡', '🌅', '✨', '🥰', '🌴', '🌊'];
+            heart.innerText = emojis[Math.floor(Math.random() * emojis.length)];
+            
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = (Math.random() * 3 + 3) + 's';
+            heart.style.fontSize = (Math.random() * 20 + 15) + 'px';
+            
+            heartBg.appendChild(heart);
+            
+            setTimeout(() => {
+                heart.remove();
+            }, 6000);
+        }
+
+        function createEmojiShower(emojiText) {
+            for(let i=0; i<10; i++) {
+                const e = document.createElement('div');
+                e.classList.add('floating-heart');
+                e.innerText = emojiText;
+                e.style.left = (Math.random() * 80 + 10) + 'vw';
+                e.style.animationDuration = '2s';
+                heartBg.appendChild(e);
+                setTimeout(() => e.remove(), 2000);
+            }
+        }
+
+        function triggerBurst() {
+            createEmojiShower('🌅');
+        }
+
+        setInterval(spawnHeart, 600);
+    </script>
+</body>
+</html>
